@@ -1,0 +1,41 @@
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Table header styles */
+  th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Table row styles */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Table cell styles */
+  td {
+    border: 1px solid #ddd;
+  }
+  
+  /* Loading spinner styles */
+  .loading-spinner {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* No data message styles */
+  .no-data-message {
+    margin-top: 20px;
+    text-align: center;
+    color: #999;
+  }
+  

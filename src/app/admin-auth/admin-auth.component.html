@@ -1,0 +1,31 @@
+<div class="signup-container">
+    <h2>Sign Up as an Admin to Post a Quiz</h2>
+    <div class="loading-spinner" *ngIf="isLoading">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="form">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" ngModel name="email" required email placeholder="E-mail" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" ngModel name="password" required minlength="6"
+                    placeholder="Password">
+            </div>
+            <div class="button-group">
+                <button type="submit" [disabled]="!authForm.valid">
+                    {{ isLoginMode ? 'Login' : 'Sign Up' }}
+                </button>
+                <button (click)="onSwitchMode()" type="button">
+                    {{ isLoginMode ? 'New? Sign Up' : 'Login' }}
+                </button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="error" *ngIf="error">
+        {{ error }}
+    </div>
+</div>

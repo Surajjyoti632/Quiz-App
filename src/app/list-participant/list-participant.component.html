@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="loading-spinner" *ngIf="isLoading">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <div class="table-container" *ngIf="!isLoading && userDetail">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Participant Name</th>
+                    <th>Participant Email</th>
+                    <th>Score Secured</th>
+                    <th>Total Score</th>
+                    <th>Quiz ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let q of userDetail">
+                    <td>{{ q.name }}</td>
+                    <td>{{ q.email }}</td>
+                    <td>{{ q.score }}</td>
+                    <td>{{ q.totScore }}</td>
+                    <td>{{ q.quizIdUser }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div *ngIf="!userDetail">
+        No User Found
+    </div>
+</div>

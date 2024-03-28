@@ -1,0 +1,44 @@
+<div class="conatiner">
+    <div *ngIf="!selected && !submitted">
+        <table border="1">
+            <tr>
+                <th>Quiz No.</th>
+                <th>Quiz Name</th>
+                <th>Number of Questions</th>
+                <th>Quiz Host</th>
+                <!-- <th>Select </th> -->
+            </tr>
+
+            <tr *ngFor="let q of quiz; let j = index " (click)="selectedOpt(q.quizId,q.userEmail,j)">
+                <td>{{ j+1 }}</td>
+                <td>{{ q.quizName }}</td>
+                <td>{{ q.numQuestions }}</td>
+                <td>{{ q.userEmail }}</td>
+                <!-- <button (click)="getData(q.quizId,q.userEmail,j)">Take Quiz</button> -->
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selected && !submitted"  class="quiz-questions">
+        <p>Number of Question:- {{quizRec.numQuestions}} </p> <br>
+        <p>Quiz ID is:- {{quizRec.quizId}}</p><br>
+        <div *ngFor="let question of quizRec.questions; let i = index">
+            <p>Question : {{ question.questionDes }}</p>
+            <ul>
+                <li *ngFor="let option of question.options">
+                    <label>
+                        <input type="radio" name="option{{ i }}" [(ngModel)]="selectedOptions[i]" [value]="option">{{
+                        option }}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <button class="submit-button" (click)="calculateScore()" [disabled] = "!allQuestionsAnswered()">Submit Answers</button>
+        <button (click)="exit()">Exit</button>
+    </div>
+    <div *ngIf="selected && submitted">
+        <b>Your Quiz is submitted successfuly and your score is <strong>{{score}}</strong></b>
+        <br><br>
+        <button class="another-quiz-button" (click)="anotherQuiz()">Take Another Quiz</button>
+        <button class="another-quiz-button" (click)="goToHome()">Exit Quiz</button>
+    </div>
+</div>
