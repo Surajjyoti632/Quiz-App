@@ -1,4 +1,7 @@
-<div class="conatiner">
+<div class="loading-spinner" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="conatiner" *ngIf="!isLoading">
     <div *ngIf="!selected && !submitted">
         <table border="1">
             <tr>

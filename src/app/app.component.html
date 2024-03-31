@@ -1,16 +1,16 @@
-<!-- <app-navbar></app-navbar> -->
-
-<div class="container" *ngIf="!hideLink">
-    <app-navbar *ngIf="isAuthenticated"></app-navbar>
-    <div *ngIf="!isAuthenticated">
-        <p>Welcome to the Home Page</p>
-        <br>
-        <a routerLink="/admin-auth" routerLinkActive="active" (click)="toggleLink()">Sign Up/Login As an Admin to Create a Quiz</a>
-        <br><br><br>
-        <a routerLink="/user" routerLinkActive="active" (click)="toggleLink()">Take A Quiz</a>
+<div>
+    <div class="container" *ngIf="!hideLink">
+        <div>
+            <p>Welcome to the Home Page</p>
+            <br>
+            <a routerLink="/admin-auth" routerLinkActive="active" (click)="toggleLink()">Sign Up/Login As an Admin to
+                Create a Quiz</a>
+            <br><br><br>
+            <a routerLink="/user" routerLinkActive="active" (click)="toggleLink()">Take A Quiz</a>
+        </div>
+        &nbsp;
     </div>
-    &nbsp;
-</div>
-<div *ngIf="hideLink">
-    <router-outlet></router-outlet>
+    <div *ngIf="hideLink">
+        <router-outlet></router-outlet>
+    </div>
 </div>

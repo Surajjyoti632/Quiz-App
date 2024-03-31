@@ -1,4 +1,6 @@
-.signup-container {
+
+
+/* .signup-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -41,13 +43,81 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+} */
+ 
+
+  .form-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.797);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+ 
+  .form-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+ 
+  .form-box .form-group {
+    position: relative;
+  }
+ 
+  .form-group input {
+    width: 100%;
+    padding: 10px 4px;
+    font-size: 16px;
+    color: rgba(241, 239, 239, 0.963);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-top: none;
+    outline: none;
+    background: transparent;
+   
+  }
+  .form-group input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.790) inset !important; /* Prevent autofill background color */
+    -webkit-text-fill-color: #fff !important; /* Override autofill text color */
+    -webkit-box-background:transparent;
 }
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: -20px;
+    font-size: 14px;
+    color: #1e49a7;
+}
+
+  .form-group label {
+    position: relative;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+  .loading-spinner {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ 
 
 .button-group button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #1e49a7;
     color: #fff;
     cursor: pointer;
 }
@@ -57,5 +127,14 @@
 }
 
 .button-group button:hover {
-    background-color: #0056b3;
+    opacity: 0.7;
+}
+.button-group button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.error {
+    position: relative;
+    color: red;
+    margin-bottom: 10px;
 }

@@ -57,9 +57,6 @@ export class ListParticipantComponent implements OnInit {
       ).subscribe(x => {
         console.log(x);
         this.userDetail = Object.values(x).filter((q: any) => q.adminEmail === this.userEmail);
-        // this.fetchedQuestions.forEach(q => {
-        //   q.questions = [...q.questions];
-        // });
         this.isLoading = false;
         console.log(this.userDetail);
       });

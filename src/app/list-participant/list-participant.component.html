@@ -1,9 +1,12 @@
+<div >
+    <app-navbar ></app-navbar>
+</div>
 <div class="container">
     <div class="loading-spinner" *ngIf="isLoading">
         <app-loading-spinner></app-loading-spinner>
     </div>
 
-    <div class="table-container" *ngIf="!isLoading && userDetail">
+    <div class="table-container" *ngIf="!isLoading && userDetail.length>0">
         <table class="data-table">
             <thead>
                 <tr>
@@ -26,7 +29,7 @@
         </table>
 
     </div>
-    <div *ngIf="!userDetail">
-        No User Found
+    <div *ngIf="userDetail.length===0" class="no-data-message">
+        No Participants
     </div>
 </div>

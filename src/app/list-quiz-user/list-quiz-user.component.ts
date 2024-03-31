@@ -30,6 +30,7 @@ export class ListQuizUserComponent implements OnInit {
   selectedOptions: string[] = [];
   score: number = 0;
   indexNumber:number;
+  isLoading = false;
 
   quiz: FetchedQuiz[] = [{
     uniqueId: '',
@@ -51,7 +52,7 @@ export class ListQuizUserComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.isLoading = true;
     this.userCredRec.name = this.activatedRoute.snapshot.params['name'];
     this.userCredRec.email = this.activatedRoute.snapshot.params['email'];
 
@@ -78,20 +79,10 @@ export class ListQuizUserComponent implements OnInit {
         })
       ).subscribe(x => {
         this.quiz = x;
+        this.isLoading = false;
         console.log(this.quiz);
       });
   }
-
-  // getData(id: string,adminEmail:string,index:number) {
-  //   this.selected = true;
-  //   this.quizRec = this.findQuizById(id);
-  //   this.quiz.splice(index,1);
-  //   this.userCredRec.quizIdUser = id;
-  //   this.userCredRec.adminEmail = adminEmail;
-  //   this.userCredRec.totScore = this.quizRec.numQuestions;
-  //   console.log(this.quizRec);
-
-  // }
 
   selectedOpt(id: string,adminEmail:string,index:number){
     console.log("selected",id);
@@ -151,12 +142,10 @@ export class ListQuizUserComponent implements OnInit {
     this.submitted = false;
     this.selected = false;
   }
+  
   goToHome(){
     this.router.navigate(['user']);
   }
-
-  
-
 
   exit(){
     this.submitted = false;

@@ -29,6 +29,7 @@ export class ListQuizAdminComponent implements OnInit {
   userEmail: string ='';
 
   isLoading = false;
+  isSelected = false;
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -70,5 +71,16 @@ export class ListQuizAdminComponent implements OnInit {
       });
   }
 
+  selectedQue:any;
+  selected(q:any){
+    console.log(q);
+    this.isSelected = true;
+    this.selectedQue = q;
+  }
+
+  back(){
+    this.isSelected = false;
+    
+  }
 
 }

@@ -1,9 +1,13 @@
 
+<div >
+    <app-navbar ></app-navbar>
+</div>
 <div *ngIf="isLoading" class="loading-spinner">
     <app-loading-spinner></app-loading-spinner>
 </div>
 
-<table border="1" *ngIf="!isLoading">
+
+<table border="1" *ngIf="!isLoading && fetchedQuestions.length>0 && !isSelected">
     <tr>
         <th>Quiz ID</th>
         <th>Quiz Name</th>
@@ -11,7 +15,7 @@
         <th>Admin Name</th>
     </tr>
     
-    <tr *ngFor="let q of fetchedQuestions">
+    <tr *ngFor="let q of fetchedQuestions; let ind=index" (click)="selected(q)">
         <td>{{ q.quizId }}</td>
         <td>{{ q.quizName }}</td>
         <td>{{ q.numQuestions }}</td>
@@ -19,43 +23,19 @@
     </tr>
 </table>
 
-<div *ngIf="!fetchedQuestions" class="no-data-message">
-    <small>No Quiz found for this user</small>
-</div>
-
-
-<!-- <p>list-quiz-admin works!</p>
-
-<div *ngIf="isLoading" style="text-align:center">
-    <app-loading-spinner></app-loading-spinner>
-</div>
-
-<table border="1" *ngIf="!isLoading ">
-    <tr>
-        <th>Quiz ID</th>
-        <th>Quiz Name</th>
-        <th>Number of Questions</th>
-        <th>Admin Name</th>
-        <th>All Question of the Admin</th>
-    </tr>
-    
-    <tr *ngFor="let q of quiz">
-        <td>{{q.quizId}}</td>
-        <td>{{q.quizName}}</td>
-        <td>{{q.numQuestions}}</td>
-        <td>{{q.userEmail}}</td>
-        <ul *ngFor="let question of q.questions">
-                <li>{{ question.questionDes }}</li>
-                <li>{{ question.options[0] }}</li>
-                <li>{{ question.options[1] }}</li>
-                <li>{{ question.options[2] }}</li>
-                <li>{{ question.options[3] }}</li>
-                <li>{{ question.options[question.correctOption]}}</li>
-            
+<div *ngIf="isSelected"  class="quiz-questions">
+    <p>Number of Question:- {{selectedQue.numQuestions}} </p> <br>
+    <p>Quiz ID is:- {{selectedQue.quizId}}</p><br>
+    <div *ngFor="let question of selectedQue.questions; let i = index">
+        <p>Question : {{ question.questionDes }}</p>
+        <ul *ngFor="let option of question.options;let i=index">
+            <li >{{i+1}}. {{option}}</li>
         </ul>
-    </tr>
-</table>
+    </div>
+    <button (click)="back()" class="back">Back</button>
+</div>
 
-<div *ngIf="!fetchedQuestions">
+<div *ngIf="fetchedQuestions.length===0 && !isLoading" class="no-data-message">
     <small>No Quiz found for this user</small>
-</div> -->
+</div>
+

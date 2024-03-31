@@ -1,8 +1,11 @@
+
+nav{
+    max-width: 100vw;
+}
 .navbar-items {
     list-style-type: none;
     padding: 0;
-    /* margin: 0; */
-    display: flex; /* Make it a flex container */
+    display: flex; 
     background-color: aquamarine;
     height: 50px;
     align-items: center;
@@ -12,18 +15,24 @@
     margin-right: 10px; 
 }
 
-/* .navbar-items li:last-child {
-    margin-right: 10px; 
-    margin-left: auto;
-} */
 
 .logout-btn{
     margin-right: 10px; 
-    margin-left: auto;
+    margin-left: auto;    
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+.logout-btn:hover{
+    background-color: #0056b3;
 }
 
 .navbar-items li a {
     text-decoration: none;
     color: #333;
     padding: 10px;
-}
+} 
+

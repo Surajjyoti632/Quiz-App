@@ -1,10 +1,11 @@
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     border: 1px solid #5b9aebfb;
     border-radius: 10px;
     background-color: #f9f9f9;
+    
 }
 
 .form-section {
@@ -34,12 +35,20 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px
 }
 
 .btn-primary {
     background-color: #158b27;
     color: #fff;
     margin-right: 10px;
+}
+.btn-primary:disabled {
+    background-color: #158b27;
+    color: #fff;
+    margin-right: 10px;
+    opacity: 0.5;
+    cursor:not-allowed;
 }
 
 .btn-secondary {
@@ -59,3 +68,4 @@
     border-radius: 5px;
     text-align: center;
 }
+

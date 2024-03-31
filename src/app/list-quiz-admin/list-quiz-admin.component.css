@@ -20,6 +20,10 @@ table {
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+  tr:hover{
+    background-color: #d8cfcf;
+    cursor: pointer;
+  }
   
   /* Table cell styles */
   td {
@@ -39,3 +43,36 @@ table {
     color: #999;
   }
   
+  .quiz-questions {
+    margin-top: 20px;
+    font-size:large;
+}
+
+.quiz-questions p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.quiz-questions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quiz-questions li {
+    margin-bottom: 8px;
+}
+
+.quiz-questions label {
+    display: block;
+}
+.back{
+  padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+.back:hover{
+  background-color: #0056b3;
+}

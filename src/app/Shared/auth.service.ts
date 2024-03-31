@@ -46,6 +46,7 @@ export class AuthService {
         }
       )
       .pipe(catchError(this.handleError), tap(resData => {
+        console.log(+resData.expiresIn);
         this.handleAuthentication(
           resData.email,
           resData.localId,
@@ -86,6 +87,7 @@ export class AuthService {
 
   logout(){
     this.user.next(null);
+    
   }
 
   

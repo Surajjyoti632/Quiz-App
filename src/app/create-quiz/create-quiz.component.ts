@@ -12,10 +12,10 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 })
 export class CreateQuizComponent implements OnInit {
 
-  
-  constructor(private quizService: QuizService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
-  email :string = this.activatedRoute.snapshot.params['email'];
+  constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute, private router: Router) { }
+
+  email: string = this.activatedRoute.snapshot.params['email'];
 
   ngOnInit(): void {
 
@@ -25,12 +25,22 @@ export class CreateQuizComponent implements OnInit {
   isFormSubmitted: boolean = false;
   isNumberOfInputsSubmitted: boolean = false;
 
-  newQuiz: AdminQuiz = { userEmail :this.email,quizId: this.generateID(), quizName: '', numQuestions: 0, questions: [] };
+  newQuiz: AdminQuiz = { userEmail: this.email, quizId: this.generateID(), quizName: '', numQuestions: 0, questions: [] };
   question: Question = { questionDes: '', options: ['', '', '', ''], correctOption: 0 };
 
 
   generateForm() {
-    this.isNumberOfInputsSubmitted = true;
+    if (this.newQuiz.numQuestions > 0 && this.newQuiz.quizName.length > 0) {
+      this.isNumberOfInputsSubmitted = true;
+    } else {
+      alert("Please give proper the inputs");
+    }
+  }
+  exitQuiz() {
+    this.isNumberOfInputsSubmitted = false;
+    this.newQuiz.quizName = '';
+    this.newQuiz.numQuestions = 0;
+    this.newQuiz.questions = [];
   }
 
   getNextInput() {
@@ -42,9 +52,12 @@ export class CreateQuizComponent implements OnInit {
   }
 
   saveData() {
-    if (this.question && Object.keys(this.question).length !== 0) {
+    
+    if (Object.keys(this.question).length !== 0) {
       this.newQuiz.questions.push(this.question);
       console.log('User input:', this.newQuiz.questions);
+    } else {
+      alert("Please insert valid input");
     }
     if (this.currentInput < this.newQuiz.numQuestions - 1) {
       console.log("inside if")
@@ -53,9 +66,10 @@ export class CreateQuizComponent implements OnInit {
       this.isFormSubmitted = true;
       console.log(this.currentInput);
       console.log('All inputs submitted:', this.newQuiz);
-      this.quizService.postQuiz(this.newQuiz).subscribe(resData=>console.log(resData));
-      this.router.navigate(['list-quiz',this.email]);
+      this.quizService.postQuiz(this.newQuiz).subscribe(resData => console.log(resData));
+      this.router.navigate(['list-quiz', this.email]);
     }
+
   }
 
   generateID(): string {
@@ -64,11 +78,11 @@ export class CreateQuizComponent implements OnInit {
     return uniqueNum.toString();
   }
 
-  goToQuizList(){
-    this.router.navigate(['list-quiz',this.email]);
+  goToQuizList() {
+    this.router.navigate(['list-quiz', this.email]);
   }
 
-  getParticipant(){
-    this.router.navigate(['list-participant',this.email]);
+  getParticipant() {
+    this.router.navigate(['list-participant', this.email]);
   }
 }
