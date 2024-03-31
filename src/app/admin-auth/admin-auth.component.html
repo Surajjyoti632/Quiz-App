@@ -3,7 +3,7 @@
         <app-loading-spinner></app-loading-spinner>
     </div>
     
-    <div class="form-box" *ngIf="!isLoading">
+    <div class="login-box" *ngIf="!isLoading">
         <h2>{{ isLoginMode ? 'Login' : 'Sign Up' }} as an Admin</h2>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
             <div class="form-group">
@@ -28,5 +28,4 @@
             </div>
         </form>
     </div>
-   
 </div>

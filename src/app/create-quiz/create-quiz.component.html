@@ -4,6 +4,7 @@
 <div class="container">
     <div class="form-section" *ngIf="!isNumberOfInputsSubmitted">
         <h2>Create a New Quiz</h2>
+        <br>
         <div class="input-group">
             <label for="quizName">Quiz Name:</label>
             <input type="text" id="quizName" [(ngModel)]="newQuiz.quizName" required>
@@ -18,7 +19,7 @@
     </div>
 
     <div class="form-section" *ngIf="isNumberOfInputsSubmitted && !isFormSubmitted">
-        <h2>Enter Question Number {{ currentInput + 1 }}:</h2>
+        <h2>Enter Question Number {{ currentInput + 1 }}:</h2><br>
         <form #inputForm="ngForm" (ngSubmit)="saveData()">
             <div class="input-group">
                 <label for="questionDes">Question Description:</label>

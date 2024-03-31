@@ -52,7 +52,7 @@ export class CreateQuizComponent implements OnInit {
   }
 
   saveData() {
-    
+
     if (Object.keys(this.question).length !== 0) {
       this.newQuiz.questions.push(this.question);
       console.log('User input:', this.newQuiz.questions);
@@ -66,8 +66,12 @@ export class CreateQuizComponent implements OnInit {
       this.isFormSubmitted = true;
       console.log(this.currentInput);
       console.log('All inputs submitted:', this.newQuiz);
-      this.quizService.postQuiz(this.newQuiz).subscribe(resData => console.log(resData));
-      this.router.navigate(['list-quiz', this.email]);
+      this.quizService.postQuiz(this.newQuiz).subscribe(resData => {
+        // alert("Quiz successfully created");
+        console.log(resData);
+        this.router.navigate(['list-quiz', this.email]);
+      });
+      
     }
 
   }

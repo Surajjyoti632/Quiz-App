@@ -1,38 +1,47 @@
-
-nav{
-    max-width: 100vw;
+nav {
+  margin-top: 2px;
+  max-width: 100vw;
 }
+
 .navbar-items {
-    list-style-type: none;
-    padding: 0;
-    display: flex; 
-    background-color: aquamarine;
-    height: 50px;
-    align-items: center;
+  list-style-type: none;
+  display: flex;
+  background-color: rgb(35, 135, 102);
+  height: 60px;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.423);
+
 }
 
 .navbar-items li {
-    margin-right: 10px; 
+  margin-left: 10px;
+  font-size: larger;
 }
 
-
-.logout-btn{
-    margin-right: 10px; 
-    margin-left: auto;    
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+.navbar-items li :hover {
+  
+  font-size: large;
 }
-.logout-btn:hover{
-    background-color: #0056b3;
+
+.logout-btn {
+  margin-right: 10px;
+  margin-left: auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1e49a7;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.423);
+}
+
+.logout-btn:hover {
+  background-color: #0056b3;
 }
 
 .navbar-items li a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px;
-} 
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
 
+}

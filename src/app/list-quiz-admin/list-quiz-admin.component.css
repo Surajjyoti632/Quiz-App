@@ -45,11 +45,13 @@ table {
   
   .quiz-questions {
     margin-top: 20px;
+    margin-left: 20px;
     font-size:large;
 }
 
 .quiz-questions p {
     margin: 0;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 

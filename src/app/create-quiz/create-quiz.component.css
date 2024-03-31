@@ -1,11 +1,10 @@
 .container {
     max-width: 600px;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 20px;
-    border: 1px solid #5b9aebfb;
     border-radius: 10px;
     background-color: #f9f9f9;
-    
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.532);
 }
 
 .form-section {
@@ -27,6 +26,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
 }
 
 .btn-primary,
@@ -35,19 +35,20 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px
+    margin-top: 20px;
+    
 }
 
 .btn-primary {
-    background-color: #158b27;
+    background-color: #1e49a7;
     color: #fff;
     margin-right: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.423);
 }
 .btn-primary:disabled {
-    background-color: #158b27;
+    opacity: 0.5;
     color: #fff;
     margin-right: 10px;
-    opacity: 0.5;
     cursor:not-allowed;
 }
 
