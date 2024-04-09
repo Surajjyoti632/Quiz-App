@@ -5,8 +5,6 @@
 <div *ngIf="isLoading" class="loading-spinner">
     <app-loading-spinner></app-loading-spinner>
 </div>
-
-
 <table border="1" *ngIf="!isLoading && fetchedQuestions.length>0 && !isSelected">
     <tr>
         <th>Quiz ID</th>
@@ -24,8 +22,8 @@
 </table>
 
 <div *ngIf="isSelected"  class="quiz-questions">
-    <p>Number of Question:- {{selectedQue.numQuestions}} </p> <br>
-    <p>Quiz ID is:- {{selectedQue.quizId}}</p><br>
+    <p>Number of Question:- {{selectedQue.numQuestions}} </p> 
+    <p>Quiz ID is:- {{selectedQue.quizId}}</p>
     <div *ngFor="let question of selectedQue.questions; let i = index">
         <p>Question : {{ question.questionDes }}</p>
         <ul *ngFor="let option of question.options;let i=index">

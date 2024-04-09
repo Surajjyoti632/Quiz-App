@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../Shared/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Participant } from '../Shared/participant';
-import { map } from 'rxjs';
+import { Subscription, interval, map } from 'rxjs';
 import { FetchedQuiz } from '../Shared/fetchedQuiz';
 import { Question } from '../Shared/questions';
 
@@ -18,10 +18,10 @@ export class ListQuizUserComponent implements OnInit {
   userCredRec: any = {
     name: '',
     email: '',
-    score:0,
-    quizIdUser:'',
-    adminEmail:'',
-    totScore:0,
+    score: 0,
+    quizIdUser: '',
+    adminEmail: '',
+    totScore: 0,
   };
 
   selected = false;
@@ -29,8 +29,14 @@ export class ListQuizUserComponent implements OnInit {
   selectedOption: number;
   selectedOptions: string[] = [];
   score: number = 0;
-  indexNumber:number;
+  indexNumber: number;
   isLoading = false;
+  difference: number = 0;
+  time:any ;
+  countdownValue: number ;
+  countdownSubscription: Subscription;
+  min:number;
+  sec:number;
 
   quiz: FetchedQuiz[] = [{
     uniqueId: '',
@@ -84,10 +90,11 @@ export class ListQuizUserComponent implements OnInit {
       });
   }
 
-  selectedOpt(id: string,adminEmail:string,index:number){
-    console.log("selected",id);
+  selectedOpt(id: string, adminEmail: string, index: number) {
+    console.log("selected", id);
     this.selected = true;
     this.quizRec = this.findQuizById(id);
+    this.startCountdown();
     // this.quiz.splice(index,1);
     this.indexNumber = index;
     this.userCredRec.quizIdUser = id;
@@ -110,10 +117,12 @@ export class ListQuizUserComponent implements OnInit {
     console.log(this.userCredRec);
     this.quizService.postUserData(this.userCredRec).subscribe(
       data => {
+        alert("Quiz submitted successfully");
+        this.stopCountdown();
         console.log(data);
-        this.quiz.splice(this.indexNumber,1);
+        this.quiz.splice(this.indexNumber, 1);
       }
-      
+
     );
     this.submitted = true;
 
@@ -121,15 +130,15 @@ export class ListQuizUserComponent implements OnInit {
 
   allQuestionsAnswered(): boolean {
     console.log(this.selectedOptions);
-    console.log(this.quizRec.numQuestions,"+",this.selectedOptions.length);
-    
-    if(this.selectedOptions.length===this.quizRec.numQuestions){
+    console.log(this.quizRec.numQuestions, "+", this.selectedOptions.length);
+
+    if (this.selectedOptions.length === this.quizRec.numQuestions) {
       for (let i = 0; i < this.quizRec.numQuestions; i++) {
-          if (!this.selectedOptions[i]) { 
-              return false;
-          }
+        if (!this.selectedOptions[i]) {
+          return false;
+        }
       }
-      return true; 
+      return true;
     }
     return this.selectedOptions.length === this.quizRec.numQuestions;
   }
@@ -138,18 +147,43 @@ export class ListQuizUserComponent implements OnInit {
     return this.quiz.find(q => q.quizId === quizId);
   }
 
-  anotherQuiz(){
+  anotherQuiz() {
     this.submitted = false;
     this.selected = false;
   }
-  
-  goToHome(){
+
+  goToHome() {
     this.router.navigate(['user']);
   }
 
-  exit(){
+  exit() {
     this.submitted = false;
     this.selected = false;
     this.selectedOptions = [];
+    this.stopCountdown();
+  }
+  
+  startCountdown(): void {
+    this.countdownValue = new Date().getTime() + (this.quizRec.numQuestions * 60 * 1000);
+    this.countdownSubscription = interval(1000).subscribe(() => {
+    const now = new Date().getTime();
+    this.difference = this.countdownValue - now;
+    this.min = Math.floor((this.difference % (1000 * 60 * 60)) / (1000 * 60));
+    this.sec = Math.floor((this.difference % (1000 * 60)) / 1000);
+    this.time = this.min + "m " + this.sec + "s";
+    console.log(this.time);
+    if (this.difference < 0) {
+      this.countdownSubscription.unsubscribe();
+      alert("Time Over! Quiz submitted");
+      this.calculateScore();
+    }
+    });
+  }
+
+  stopCountdown(): void {
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+      this.time = 0;
+    }
   }
 }

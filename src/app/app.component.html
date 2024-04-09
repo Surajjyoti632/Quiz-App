@@ -1,7 +1,7 @@
 <div>
-    <div class="container" *ngIf="!hideLink">
+    <div class="container" *ngIf="!hideLink && !isAuthenticated">
         <div>
-            <p>Welcome to the Home Page</p>
+            <h2>Welcome to the Home Page</h2>
             <br>
             <a routerLink="/admin-auth" routerLinkActive="active" (click)="toggleLink()">Sign Up/Login As an Admin to
                 Create a Quiz</a>

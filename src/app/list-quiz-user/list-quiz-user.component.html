@@ -1,7 +1,8 @@
 <div class="loading-spinner" *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<div class="conatiner" *ngIf="!isLoading">
+
+<div class="container" *ngIf="!isLoading">
     <div *ngIf="!selected && !submitted">
         <table border="1">
             <tr>
@@ -22,14 +23,17 @@
         </table>
     </div>
     <div *ngIf="selected && !submitted"  class="quiz-questions">
-        <p>Number of Question:- {{quizRec.numQuestions}} </p> <br>
-        <p>Quiz ID is:- {{quizRec.quizId}}</p><br>
+        <div class="timer">
+            <p>Time Remaning {{time}}</p>
+        </div>
+        <p>Number of Question:- {{quizRec.numQuestions}} </p>
+        <p>Quiz ID is:- {{quizRec.quizId}}</p>
         <div *ngFor="let question of quizRec.questions; let i = index">
             <p>Question : {{ question.questionDes }}</p>
             <ul>
                 <li *ngFor="let option of question.options">
                     <label>
-                        <input type="radio" name="option{{ i }}" [(ngModel)]="selectedOptions[i]" [value]="option">{{
+                        <input type="radio" name="option{{ i }}" [(ngModel)]="selectedOptions[i]" [value]="option">&nbsp;{{
                         option }}
                     </label>
                 </li>

@@ -11,13 +11,16 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn = false;
-
+  private userSub: Subscription = new Subscription();
   constructor(private authService:AuthService,private router:Router) { 
     // this.isLoggedIn = this.authService.isLoggedIn();
   }
  
   ngOnInit(): void {
    
+  }
+  homeClick(){
+    this.authService.logout();
   }
 
   onLogOut(){
