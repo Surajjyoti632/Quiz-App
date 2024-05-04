@@ -29,7 +29,6 @@ export class AppComponent implements OnInit{
       console.log(!user);
       console.log(!!user);
     });
-    console.log(this.userSub);
   }
 
   @HostListener('window:popstate', ['$event'])

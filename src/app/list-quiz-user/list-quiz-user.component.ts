@@ -161,10 +161,11 @@ export class ListQuizUserComponent implements OnInit {
     this.selected = false;
     this.selectedOptions = [];
     this.stopCountdown();
+    console.log("quiz exit called");
   }
   
   startCountdown(): void {
-    this.countdownValue = new Date().getTime() + (this.quizRec.numQuestions * 60 * 1000);
+    this.countdownValue = new Date().getTime() + (this.quizRec.numQuestions * 60 * 1000 )/2;
     this.countdownSubscription = interval(1000).subscribe(() => {
     const now = new Date().getTime();
     this.difference = this.countdownValue - now;
